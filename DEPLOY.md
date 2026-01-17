@@ -17,7 +17,7 @@ This guide covers how to deploy the Demo Credit API to a cloud platform. We reco
 Heroku is the easiest way to deploy Node.js apps with MySQL add-ons (like JawsDB or ClearDB).
 
 ### Step 1: Prepare App
-1.  Make sure `package.json` has `start` script: `"start": "node dist/server.js"`.
+1.  Make sure `package.json` has `start` script: `"start": "node dist/src/server.js"`.
 2.  Make sure `knexfile.js` is configured to use `process.env.DATABASE_URL` (Already done).
 
 ### Step 2: Create App with Specific Name
@@ -70,8 +70,9 @@ Render provides a generous free tier for Web Services.
 3.  **Build Command**: `npm install && npm run build`
 4.  **Start Command**: `npm start`
 5.  **Environment Variables**:
-    *   Add all variables from your `.env` file (`ADJUTOR_App_ID`, etc.).
-    *   **Database**: Render offers a managed PostgreSQL (not MySQL) by default. If you must use MySQL, you will need an external MySQL provider (like Aiven or PlanetScale) and simply paste the `DATABASE_URL` (connection string) into Render's environment variables.
+    *   Add all variables from your `.env` file (`ADJUTOR_APP_ID`, etc.).
+    *   **Database**: This app uses MySQL. Render does not provide a free managed MySQL database. **You must provide a `DATABASE_URL` from an external provider** (e.g., PlanetScale, Aiven, or a remote MySQL server).
+    *   Set `DATABASE_URL` = `mysql://user:pass@host:port/dbname`
 6.  **Deploy**: Click Create Web Service.
 
 ---
