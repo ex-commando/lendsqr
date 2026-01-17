@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "dev": "nodemon src/server.ts",
     "test": "jest --coverage",
     "migrate": "node -r ts-node/register node_modules/knex/bin/cli.js migrate:latest",
