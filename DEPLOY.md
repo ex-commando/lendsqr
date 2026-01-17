@@ -77,6 +77,33 @@ Render provides a generous free tier for Web Services.
 
 ---
 
+## Option 3: Deploy on cPanel (Shared Hosting)
+
+For hosts like Namecheap or Bluehost supporting "Setup Node.js App".
+
+**Preparation:**
+1.  Run `npm run build` locally to generate the `dist/` folder.
+2.  Create a zip file containing: `dist/`, `package.json`, `package-lock.json`, `loader.js`, `knexfile.js`, and `.env` (with production credentials).
+
+**cPanel Steps:**
+1.  **Create Database**: Go to "MySQL Database Wizard" and create a database + user.
+2.  **Upload Files**: Go to "File Manager", create a folder (e.g., `lendsqr-api`), and upload/extract your zip file there.
+3.  **Set Up Node App**:
+    *   Go to "Setup Node.js App".
+    *   **Application Root**: `lendsqr-api`
+    *   **Application URL**: `api.yourdomain.com` (Select subdomain).
+    *   **Application Startup File**: `loader.js` (We created this specific helper file to link to the compiled code).
+    *   Click **Create**.
+4.  **Install Dependencies**:
+    *   Click "Run NPM Install" button in the Node.js App interface.
+5.  **Run Migrations**:
+    *   SSH into your server (or use "Terminal" in cPanel).
+    *   Enter virtual environment: `source /home/user/nodevenv/lendsqr-api/xx/bin/activate && cd /home/user/lendsqr-api`
+    *   Run: `npm run migrate`
+6.  **Restart**: Click "Restart" in the Node.js App interface.
+
+---
+
 ## Verification
 Visit your URL: `https://<candidate-name>-lendsqr-be-test.herokuapp.com/` (or `.onrender.com`)
 You should see: `Demo Credit API (Lendsqr MVP) is running.`
